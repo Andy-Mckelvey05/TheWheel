@@ -1,0 +1,6 @@
+﻿[
+  [
+    "2026 Winners",
+    "SELECT * FROM wheel_submissions\n\tWHERE EXISTS (\n\tSELECT 1\n\tFROM json_each(dates_won)\n\tWHERE json_each.value LIKE '2026-%'\n);"
+  ]
+]
