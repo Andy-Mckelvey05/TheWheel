@@ -49,18 +49,23 @@
             // 
             // btn_CustomQuery
             // 
+            btn_CustomQuery.BackColor = Color.FromArgb(186, 225, 255);
+            btn_CustomQuery.FlatAppearance.BorderColor = Color.Black;
+            btn_CustomQuery.FlatStyle = FlatStyle.Flat;
             btn_CustomQuery.Font = new Font("Consolas", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_CustomQuery.Location = new Point(712, 267);
             btn_CustomQuery.Name = "btn_CustomQuery";
             btn_CustomQuery.Size = new Size(322, 72);
             btn_CustomQuery.TabIndex = 0;
             btn_CustomQuery.Text = "Run Custom Query";
-            btn_CustomQuery.UseVisualStyleBackColor = true;
+            btn_CustomQuery.UseVisualStyleBackColor = false;
             btn_CustomQuery.Click += btn_CustomQuery_Click;
             // 
             // txb_QueryInput
             // 
             txb_QueryInput.AcceptsReturn = true;
+            txb_QueryInput.BackColor = Color.FromArgb(255, 255, 186);
+            txb_QueryInput.BorderStyle = BorderStyle.None;
             txb_QueryInput.Location = new Point(712, 378);
             txb_QueryInput.Multiline = true;
             txb_QueryInput.Name = "txb_QueryInput";
@@ -71,6 +76,7 @@
             // 
             // ltb_QueryDisplay
             // 
+            ltb_QueryDisplay.BackColor = Color.FromArgb(255, 255, 186);
             ltb_QueryDisplay.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ltb_QueryDisplay.FormattingEnabled = true;
             ltb_QueryDisplay.ItemHeight = 14;
@@ -101,68 +107,86 @@
             // 
             // btn_WinsOldtoNew
             // 
+            btn_WinsOldtoNew.BackColor = Color.FromArgb(186, 225, 255);
+            btn_WinsOldtoNew.FlatAppearance.BorderColor = Color.Black;
+            btn_WinsOldtoNew.FlatStyle = FlatStyle.Flat;
             btn_WinsOldtoNew.Font = new Font("Consolas", 12F, FontStyle.Bold);
             btn_WinsOldtoNew.Location = new Point(216, 104);
             btn_WinsOldtoNew.Name = "btn_WinsOldtoNew";
             btn_WinsOldtoNew.Size = new Size(100, 48);
             btn_WinsOldtoNew.TabIndex = 8;
             btn_WinsOldtoNew.Text = "Old → New";
-            btn_WinsOldtoNew.UseVisualStyleBackColor = true;
+            btn_WinsOldtoNew.UseVisualStyleBackColor = false;
             btn_WinsOldtoNew.Click += btn_WinsOldtoNew_Click;
             // 
             // btn_WinsNewtoOld
             // 
+            btn_WinsNewtoOld.BackColor = Color.FromArgb(186, 225, 255);
+            btn_WinsNewtoOld.FlatAppearance.BorderColor = Color.Black;
+            btn_WinsNewtoOld.FlatStyle = FlatStyle.Flat;
             btn_WinsNewtoOld.Font = new Font("Consolas", 12F, FontStyle.Bold);
             btn_WinsNewtoOld.Location = new Point(216, 50);
             btn_WinsNewtoOld.Name = "btn_WinsNewtoOld";
             btn_WinsNewtoOld.Size = new Size(100, 48);
             btn_WinsNewtoOld.TabIndex = 7;
             btn_WinsNewtoOld.Text = "New → Old";
-            btn_WinsNewtoOld.UseVisualStyleBackColor = true;
+            btn_WinsNewtoOld.UseVisualStyleBackColor = false;
             btn_WinsNewtoOld.Click += btn_WinsNewtoOld_Click;
             // 
             // btn_YearOldtoNew
             // 
+            btn_YearOldtoNew.BackColor = Color.FromArgb(186, 225, 255);
+            btn_YearOldtoNew.FlatAppearance.BorderColor = Color.Black;
+            btn_YearOldtoNew.FlatStyle = FlatStyle.Flat;
             btn_YearOldtoNew.Font = new Font("Consolas", 12F, FontStyle.Bold);
             btn_YearOldtoNew.Location = new Point(110, 104);
             btn_YearOldtoNew.Name = "btn_YearOldtoNew";
             btn_YearOldtoNew.Size = new Size(100, 48);
             btn_YearOldtoNew.TabIndex = 6;
             btn_YearOldtoNew.Text = "Old → New";
-            btn_YearOldtoNew.UseVisualStyleBackColor = true;
+            btn_YearOldtoNew.UseVisualStyleBackColor = false;
             btn_YearOldtoNew.Click += btn_YearOldtoNew_Click;
             // 
             // btn_YearNewtoOld
             // 
+            btn_YearNewtoOld.BackColor = Color.FromArgb(186, 225, 255);
+            btn_YearNewtoOld.FlatAppearance.BorderColor = Color.Black;
+            btn_YearNewtoOld.FlatStyle = FlatStyle.Flat;
             btn_YearNewtoOld.Font = new Font("Consolas", 12F, FontStyle.Bold);
             btn_YearNewtoOld.Location = new Point(110, 50);
             btn_YearNewtoOld.Name = "btn_YearNewtoOld";
             btn_YearNewtoOld.Size = new Size(100, 48);
             btn_YearNewtoOld.TabIndex = 5;
             btn_YearNewtoOld.Text = "New → Old";
-            btn_YearNewtoOld.UseVisualStyleBackColor = true;
+            btn_YearNewtoOld.UseVisualStyleBackColor = false;
             btn_YearNewtoOld.Click += btn_YearNewtoOld_Click;
             // 
             // btn_NameZtoA
             // 
+            btn_NameZtoA.BackColor = Color.FromArgb(186, 225, 255);
+            btn_NameZtoA.FlatAppearance.BorderColor = Color.Black;
+            btn_NameZtoA.FlatStyle = FlatStyle.Flat;
             btn_NameZtoA.Font = new Font("Consolas", 12F, FontStyle.Bold);
             btn_NameZtoA.Location = new Point(4, 104);
             btn_NameZtoA.Name = "btn_NameZtoA";
             btn_NameZtoA.Size = new Size(100, 48);
             btn_NameZtoA.TabIndex = 4;
             btn_NameZtoA.Text = "Z → A";
-            btn_NameZtoA.UseVisualStyleBackColor = true;
+            btn_NameZtoA.UseVisualStyleBackColor = false;
             btn_NameZtoA.Click += btn_NameZtoA_Click;
             // 
             // btn_NameAtoZ
             // 
+            btn_NameAtoZ.BackColor = Color.FromArgb(186, 225, 255);
+            btn_NameAtoZ.FlatAppearance.BorderColor = Color.Black;
+            btn_NameAtoZ.FlatStyle = FlatStyle.Flat;
             btn_NameAtoZ.Font = new Font("Consolas", 12F, FontStyle.Bold);
             btn_NameAtoZ.Location = new Point(6, 50);
             btn_NameAtoZ.Name = "btn_NameAtoZ";
             btn_NameAtoZ.Size = new Size(100, 48);
             btn_NameAtoZ.TabIndex = 3;
             btn_NameAtoZ.Text = "A → Z";
-            btn_NameAtoZ.UseVisualStyleBackColor = true;
+            btn_NameAtoZ.UseVisualStyleBackColor = false;
             btn_NameAtoZ.Click += btn_NameAtoZ_Click;
             // 
             // lbl_Wins
@@ -197,8 +221,9 @@
             // 
             // cmb_CustomQuerys
             // 
+            cmb_CustomQuerys.BackColor = Color.FromArgb(186, 255, 201);
             cmb_CustomQuerys.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmb_CustomQuerys.FlatStyle = FlatStyle.System;
+            cmb_CustomQuerys.FlatStyle = FlatStyle.Flat;
             cmb_CustomQuerys.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmb_CustomQuerys.FormattingEnabled = true;
             cmb_CustomQuerys.Location = new Point(712, 345);
@@ -209,19 +234,23 @@
             // 
             // btn_AddRecordFormDisplay
             // 
+            btn_AddRecordFormDisplay.BackColor = Color.FromArgb(186, 225, 255);
+            btn_AddRecordFormDisplay.FlatAppearance.BorderColor = Color.Black;
+            btn_AddRecordFormDisplay.FlatStyle = FlatStyle.Flat;
             btn_AddRecordFormDisplay.Font = new Font("Consolas", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_AddRecordFormDisplay.Location = new Point(712, 12);
             btn_AddRecordFormDisplay.Name = "btn_AddRecordFormDisplay";
             btn_AddRecordFormDisplay.Size = new Size(322, 72);
             btn_AddRecordFormDisplay.TabIndex = 5;
             btn_AddRecordFormDisplay.Text = "Add Record";
-            btn_AddRecordFormDisplay.UseVisualStyleBackColor = true;
+            btn_AddRecordFormDisplay.UseVisualStyleBackColor = false;
             btn_AddRecordFormDisplay.Click += btn_AddRecordFormDisplay_Click;
             // 
             // frm_WheelQueryTool
             // 
             AutoScaleDimensions = new SizeF(7F, 14F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(255, 179, 186);
             ClientSize = new Size(1046, 616);
             Controls.Add(btn_AddRecordFormDisplay);
             Controls.Add(cmb_CustomQuerys);

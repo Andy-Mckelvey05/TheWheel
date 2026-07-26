@@ -42,6 +42,7 @@
             // 
             // txb_MovieNameInput
             // 
+            txb_MovieNameInput.BackColor = Color.FromArgb(186, 255, 201);
             txb_MovieNameInput.Font = new Font("Consolas", 12F);
             txb_MovieNameInput.Location = new Point(13, 34);
             txb_MovieNameInput.Name = "txb_MovieNameInput";
@@ -51,6 +52,7 @@
             // 
             // txb_MovieReleaseInput
             // 
+            txb_MovieReleaseInput.BackColor = Color.FromArgb(186, 255, 201);
             txb_MovieReleaseInput.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txb_MovieReleaseInput.Location = new Point(12, 142);
             txb_MovieReleaseInput.MaxLength = 4;
@@ -61,6 +63,7 @@
             // 
             // txb_LetterboxdLinkInput
             // 
+            txb_LetterboxdLinkInput.BackColor = Color.FromArgb(186, 255, 201);
             txb_LetterboxdLinkInput.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txb_LetterboxdLinkInput.Location = new Point(12, 90);
             txb_LetterboxdLinkInput.Name = "txb_LetterboxdLinkInput";
@@ -110,27 +113,36 @@
             // 
             // dtp_DateWonInput
             // 
+            dtp_DateWonInput.CalendarForeColor = Color.FromArgb(255, 255, 186);
+            dtp_DateWonInput.CalendarMonthBackground = Color.FromArgb(255, 179, 186);
+            dtp_DateWonInput.CalendarTitleBackColor = Color.FromArgb(255, 255, 186);
+            dtp_DateWonInput.CalendarTitleForeColor = Color.FromArgb(186, 225, 255);
+            dtp_DateWonInput.CalendarTrailingForeColor = Color.FromArgb(186, 255, 201);
             dtp_DateWonInput.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtp_DateWonInput.Location = new Point(228, 142);
             dtp_DateWonInput.Name = "dtp_DateWonInput";
-            dtp_DateWonInput.Size = new Size(233, 30);
+            dtp_DateWonInput.Size = new Size(232, 30);
             dtp_DateWonInput.TabIndex = 7;
             // 
             // btn_AddRecord
             // 
+            btn_AddRecord.BackColor = Color.FromArgb(186, 225, 255);
+            btn_AddRecord.FlatAppearance.BorderColor = Color.Black;
+            btn_AddRecord.FlatStyle = FlatStyle.Flat;
             btn_AddRecord.Font = new Font("Consolas", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_AddRecord.Location = new Point(12, 177);
             btn_AddRecord.Name = "btn_AddRecord";
             btn_AddRecord.Size = new Size(448, 78);
             btn_AddRecord.TabIndex = 8;
             btn_AddRecord.Text = "Add Record";
-            btn_AddRecord.UseVisualStyleBackColor = true;
+            btn_AddRecord.UseVisualStyleBackColor = false;
             btn_AddRecord.Click += btn_AddRecord_Click;
             // 
             // frm_AddRecord
             // 
             AutoScaleDimensions = new SizeF(7F, 14F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(255, 179, 186);
             ClientSize = new Size(473, 264);
             Controls.Add(btn_AddRecord);
             Controls.Add(dtp_DateWonInput);
