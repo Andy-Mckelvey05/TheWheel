@@ -49,7 +49,7 @@
             // 
             // btn_CustomQuery
             // 
-            btn_CustomQuery.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_CustomQuery.Font = new Font("Consolas", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_CustomQuery.Location = new Point(712, 267);
             btn_CustomQuery.Name = "btn_CustomQuery";
             btn_CustomQuery.Size = new Size(322, 72);

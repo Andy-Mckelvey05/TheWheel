@@ -307,6 +307,8 @@ namespace The_Wheel_Query_Tool
                     FormatColumns(row, widths)
                 );
             }
+
+            AdjustListBoxFontSize(ltb_QueryDisplay);
         }
 
 
@@ -320,6 +322,52 @@ namespace The_Wheel_Query_Tool
             }
 
             return sb.ToString().TrimEnd();
+        }
+
+        private void AdjustListBoxFontSize(ListBox listBox)
+        {
+            int maxSize = 100;
+            int minSize = 1;
+            int padding = 5;
+
+            string longestText = "";
+
+            foreach (var item in listBox.Items)
+            {
+                string itemText = item?.ToString() ?? "";
+
+                if (itemText.Length > longestText.Length)
+                {
+                    longestText = itemText;
+                }
+            }
+
+
+            if (string.IsNullOrEmpty(longestText))
+            {
+                return;
+            }
+
+
+            float fontSize = maxSize;
+
+            using (Graphics g = listBox.CreateGraphics())
+            {
+                while (fontSize > minSize)
+                {
+                    using Font testFont = new Font("Consolas", fontSize);
+
+                    if (g.MeasureString(longestText, testFont).Width <= listBox.Width - padding)
+                    {
+                        break;
+                    }
+
+                    fontSize--;
+                }
+            }
+
+
+            listBox.Font = new Font("Consolas", fontSize);
         }
 
         #endregion
