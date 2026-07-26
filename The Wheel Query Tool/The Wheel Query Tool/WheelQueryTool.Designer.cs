@@ -230,7 +230,9 @@
             Controls.Add(txb_QueryInput);
             Controls.Add(btn_CustomQuery);
             Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "frm_WheelQueryTool";
             Text = "Wheel Query Tool";
             gbx_Sorting.ResumeLayout(false);
