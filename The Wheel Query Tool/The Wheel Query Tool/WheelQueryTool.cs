@@ -99,20 +99,16 @@ namespace The_Wheel_Query_Tool
             {
                 string dbPath = GetDatabasePath();
 
-                using var connection = new SqliteConnection($"Data Source={dbPath}");
+                var builder = new SqliteConnectionStringBuilder
+                {
+                    DataSource = dbPath,
+                    Mode = SqliteOpenMode.ReadOnly
+                };
+
+                using var connection = new SqliteConnection(builder.ToString());
                 connection.Open();
 
                 string query = txb_QueryInput.Text;
-
-                if (!IsSafeSelectQuery(query))
-                {
-                    MessageBox.Show(
-                        "Custom queries are read-only. Only SELECT statements are allowed.",
-                        "Query Blocked"
-                    );
-
-                    return;
-                }
 
                 using var command = connection.CreateCommand();
                 command.CommandText = query;
@@ -127,48 +123,6 @@ namespace The_Wheel_Query_Tool
             {
                 MessageBox.Show(ex.ToString(), "SQL Error");
             }
-        }
-
-        private bool IsSafeSelectQuery(string query)
-        {
-            string cleaned = query
-                .Trim()
-                .ToUpperInvariant();
-
-            if (cleaned.Contains("--") || cleaned.Contains("/*"))
-            {
-                return false;
-            }
-
-            if (!cleaned.StartsWith("SELECT"))
-            {
-                return false;
-            }
-
-            string[] forbidden =
-            {
-                "INSERT",
-                "UPDATE",
-                "DELETE",
-                "DROP",
-                "ALTER",
-                "CREATE",
-                "REPLACE",
-                "TRUNCATE",
-                "ATTACH",
-                "DETACH"
-            };
-
-
-            foreach (string word in forbidden)
-            {
-                if (cleaned.Contains(word))
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
 
         #endregion
