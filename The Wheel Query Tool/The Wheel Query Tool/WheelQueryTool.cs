@@ -217,49 +217,125 @@ namespace The_Wheel_Query_Tool
         {
             ltb_QueryDisplay.Items.Clear();
 
-            List<string[]> rows = new();
-
-            rows.Add(new[]
+            string[] header =
             {
                 "#:",
                 "Movie Name:",
-                "Year:  ",
+                "Year:",
                 "Dates Won:"
-            });
+            };
+
+            int numberWidth = Math.Max(
+                header[0].Length,
+                submissions.Count.ToString().Length
+            );
+
+            int movieNameWidth = header[1].Length;
+            int yearWidth = header[2].Length;
+            int datesWidth = header[3].Length;
+
+            foreach (WheelSubmission movie in submissions)
+            {
+                movieNameWidth = Math.Max(movieNameWidth, movie.MovieName.Length);
+                yearWidth = Math.Max(yearWidth, movie.ReleaseYear.ToString().Length);
+
+                if (movie.DatesWon.Count > 0)
+                {
+                    foreach (DateTime date in movie.DatesWon)
+                    {
+                        string dateText = date.ToString("dd/MM/yyyy");
+                        datesWidth = Math.Max(datesWidth, dateText.Length);
+                    }
+                }
+            }
+
+            ltb_QueryDisplay.Items.Add(
+                FormatColumns(
+                    [
+                        "#:",
+                        "Movie Name:",
+                        "Year:",
+                        "Dates Won:"
+                    ],
+                    [
+                        numberWidth,
+                        movieNameWidth,
+                        yearWidth,
+                        datesWidth
+                    ]
+                )
+            );
 
 
             int rowNumber = 1;
 
             foreach (WheelSubmission movie in submissions)
             {
-                rows.Add(new[]
+                List<DateTime> sortedDates = movie.DatesWon.OrderBy(x => x).ToList();
+
+                if (sortedDates.Count == 0)
                 {
-                    rowNumber.ToString(),
-                    movie.MovieName,
-                    movie.ReleaseYear.ToString(),
-                    movie.DatesWonDisplay()
-                });
+                    ltb_QueryDisplay.Items.Add(
+                        FormatColumns(
+                            [
+                                rowNumber.ToString(),
+                                movie.MovieName,
+                                movie.ReleaseYear.ToString(),
+                                ""
+                            ],
+                            [
+                                numberWidth,
+                                movieNameWidth,
+                                yearWidth,
+                                datesWidth
+                            ]
+                        )
+                    );
+
+                    rowNumber++;
+                    continue;
+                }
+
+
+                ltb_QueryDisplay.Items.Add(
+                    FormatColumns(
+                        [
+                            rowNumber.ToString(),
+                            movie.MovieName,
+                            movie.ReleaseYear.ToString(),
+                            sortedDates[0].ToString("dd/MM/yyyy")
+                        ],
+                        [
+                            numberWidth,
+                            movieNameWidth,
+                            yearWidth,
+                            datesWidth
+                        ]
+                    )
+                );
+
+
+                for (int i = 1; i < sortedDates.Count; i++)
+                {
+                    ltb_QueryDisplay.Items.Add(
+                        FormatColumns(
+                            [
+                                "",
+                                "",
+                                "",
+                                sortedDates[i].ToString("dd/MM/yyyy")
+                            ],
+                            [
+                                numberWidth,
+                                movieNameWidth,
+                                yearWidth,
+                                datesWidth
+                            ]
+                        )
+                    );
+                }
 
                 rowNumber++;
-            }
-
-
-            int[] widths = new int[rows[0].Length];
-
-            foreach (string[] row in rows)
-            {
-                for (int i = 0; i < row.Length; i++)
-                {
-                    widths[i] = Math.Max(widths[i], row[i].Length);
-                }
-            }
-
-
-            foreach (string[] row in rows)
-            {
-                ltb_QueryDisplay.Items.Add(
-                    FormatColumns(row, widths)
-                );
             }
 
             AdjustListBoxFontSize(ltb_QueryDisplay);
