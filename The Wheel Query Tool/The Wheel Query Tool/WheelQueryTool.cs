@@ -414,24 +414,32 @@ namespace The_Wheel_Query_Tool
                 return;
             }
 
-            int movieIndex = selectedIndex - 1;
+            int currentRow = 1;
 
-            if (movieIndex >= submissions.Count)
+            for (int movieIndex = 0; movieIndex < submissions.Count; movieIndex++)
             {
-                return;
-            }
+                WheelSubmission movie = submissions[movieIndex];
 
-            WheelSubmission movie = submissions[movieIndex];
+                int rowsForMovie = Math.Max(1, movie.DatesWon.Count);
 
-            if (!string.IsNullOrWhiteSpace(movie.LetterboxdLink))
-            {
-                Process.Start(
-                    new ProcessStartInfo
+                if (selectedIndex >= currentRow &&
+                    selectedIndex < currentRow + rowsForMovie)
+                {
+                    if (!string.IsNullOrWhiteSpace(movie.LetterboxdLink))
                     {
-                        FileName = movie.LetterboxdLink,
-                        UseShellExecute = true
+                        Process.Start(
+                            new ProcessStartInfo
+                            {
+                                FileName = movie.LetterboxdLink,
+                                UseShellExecute = true
+                            }
+                        );
                     }
-                );
+
+                    return;
+                }
+
+                currentRow += rowsForMovie;
             }
         }
 
