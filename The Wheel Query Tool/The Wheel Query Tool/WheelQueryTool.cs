@@ -19,6 +19,7 @@ namespace The_Wheel_Query_Tool
             PopulateQueryComboBox();
 
             btn_CustomQuery_Click(null, EventArgs.Empty);
+            btn_WinsNewtoOld_Click(null, EventArgs.Empty);
         }
 
 
@@ -532,6 +533,7 @@ namespace The_Wheel_Query_Tool
 
             cmb_CustomQuerys.SelectedIndex = 0;
             btn_CustomQuery_Click(null, EventArgs.Empty);
+            btn_WinsNewtoOld_Click(null, EventArgs.Empty);
         }
 
         #endregion
