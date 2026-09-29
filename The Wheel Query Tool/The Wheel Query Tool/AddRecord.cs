@@ -1,4 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
+using System.Globalization;
+using System.Text;
 using System.Text.Json;
 
 namespace The_Wheel_Query_Tool
@@ -225,7 +227,7 @@ namespace The_Wheel_Query_Tool
                     );
                 }
 
-
+                UpdateBannedMoviesFile();
                 Close();
             }
             catch (Exception ex)
@@ -257,6 +259,140 @@ namespace The_Wheel_Query_Tool
                 root,
                 "The Wheel.db"
             );
+        }
+
+        private void UpdateBannedMoviesFile()
+        {
+            try
+            {
+                string dbPath = GetDatabasePath();
+
+                string directory = Path.GetDirectoryName(dbPath)
+                    ?? AppContext.BaseDirectory;
+
+                string outputPath = Path.Combine(
+                    directory,
+                    "Banned Movies.txt"
+                );
+
+                int currentYear = DateTime.Now.Year;
+
+                using var connection = new SqliteConnection(
+                    $"Data Source={dbPath}"
+                );
+
+                connection.Open();
+
+                using var command = connection.CreateCommand();
+
+                command.CommandText =
+                """
+        SELECT movie_name, release_year, dates_won
+        FROM wheel_submissions
+        """;
+
+                using var reader = command.ExecuteReader();
+
+                List<(string Name, int Year, DateTime WinDate)> movies = new();
+
+                while (reader.Read())
+                {
+                    string movieName =
+                        reader["movie_name"]?.ToString() ?? "";
+
+                    int releaseYear =
+                        Convert.ToInt32(reader["release_year"]);
+
+                    string datesJson =
+                        reader["dates_won"]?.ToString() ?? "[]";
+
+                    List<string> dates =
+                        JsonSerializer.Deserialize<List<string>>(datesJson)
+                        ?? new List<string>();
+
+                    DateTime? currentYearWin = null;
+
+                    foreach (string date in dates)
+                    {
+                        if (DateTime.TryParseExact(
+                            date,
+                            "yyyy-MM-dd",
+                            CultureInfo.InvariantCulture,
+                            DateTimeStyles.None,
+                            out DateTime winDate))
+                        {
+                            if (winDate.Year == currentYear)
+                            {
+                                currentYearWin = winDate;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (currentYearWin.HasValue)
+                    {
+                        movies.Add(
+                            (
+                                movieName,
+                                releaseYear,
+                                currentYearWin.Value
+                            )
+                        );
+                    }
+                }
+
+                StringBuilder output = new();
+
+                output.AppendLine("Banned Movies:");
+                output.AppendLine();
+
+                for (int month = 1; month <= 12; month++)
+                {
+                    List<(string Name, int Year, DateTime WinDate)> monthMovies =
+                        movies
+                            .Where(movie => movie.WinDate.Month == month)
+                            .OrderBy(movie => movie.Name)
+                            .ThenBy(movie => movie.Year)
+                            .ToList();
+
+                    // Don't display months with no banned movies.
+                    if (monthMovies.Count == 0)
+                    {
+                        continue;
+                    }
+
+                    string monthName =
+                        CultureInfo.CurrentCulture
+                            .DateTimeFormat
+                            .GetAbbreviatedMonthName(month);
+
+                    output.AppendLine(
+                        $"{month:00} ({monthName})"
+                    );
+
+                    foreach (var movie in monthMovies)
+                    {
+                        output.AppendLine(
+                            $" - {movie.Name} ({movie.Year})"
+                        );
+                    }
+
+                    output.AppendLine();
+                }
+
+                File.WriteAllText(
+                    outputPath,
+                    output.ToString(),
+                    Encoding.UTF8
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.ToString(),
+                    "Banned Movies File Error"
+                );
+            }
         }
     }
 }
