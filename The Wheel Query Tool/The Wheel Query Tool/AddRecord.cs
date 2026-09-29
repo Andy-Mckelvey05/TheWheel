@@ -31,9 +31,7 @@ namespace The_Wheel_Query_Tool
                 return;
             }
 
-            if (!int.TryParse(
-                txb_MovieReleaseInput.Text,
-                out int releaseYear))
+            if (!int.TryParse(txb_MovieReleaseInput.Text, out int releaseYear))
             {
                 MessageBox.Show(
                     "Release year must be a number.",
@@ -43,8 +41,7 @@ namespace The_Wheel_Query_Tool
                 return;
             }
 
-            if (releaseYear < 1800 ||
-                releaseYear > DateTime.Now.Year)
+            if (releaseYear < 1800 || releaseYear > DateTime.Now.Year)
             {
                 MessageBox.Show(
                     "Invalid release year.",
@@ -56,19 +53,10 @@ namespace The_Wheel_Query_Tool
 
             DateTime winDate = dtp_DateWonInput.Value.Date;
 
-            SaveSubmission(
-                movieName,
-                releaseYear,
-                letterboxdLink,
-                winDate
-            );
+            SaveSubmission(movieName, releaseYear, letterboxdLink, winDate);
         }
 
-        private void SaveSubmission(
-            string movieName,
-            int releaseYear,
-            string letterboxdLink,
-            DateTime winDate)
+        private void SaveSubmission(string movieName, int releaseYear, string letterboxdLink, DateTime winDate)
         {
             try
             {
@@ -85,15 +73,8 @@ namespace The_Wheel_Query_Tool
                 AND release_year = $year
                 """;
 
-                checkCommand.Parameters.AddWithValue(
-                    "$movie",
-                    movieName
-                );
-
-                checkCommand.Parameters.AddWithValue(
-                    "$year",
-                    releaseYear
-                );
+                checkCommand.Parameters.AddWithValue("$movie", movieName);
+                checkCommand.Parameters.AddWithValue("$year", releaseYear);
 
                 object? existing = checkCommand.ExecuteScalar();
 
@@ -101,20 +82,9 @@ namespace The_Wheel_Query_Tool
 
                 if (existing != null)
                 {
-                    List<string> dates =
-                        JsonSerializer.Deserialize<List<string>>(
-                            existing.ToString() ?? "[]"
-                        )
-                        ?? new List<string>();
+                    List<string> dates = JsonSerializer.Deserialize<List<string>>(existing.ToString() ?? "[]") ?? new List<string>();
 
-
-                    bool alreadyWonThisYear =
-                        dates.Any(date =>
-                            date.StartsWith(
-                                winDate.Year.ToString()
-                            )
-                        );
-
+                    bool alreadyWonThisYear = dates.Any(date => date.StartsWith(winDate.Year.ToString()));
 
                     if (alreadyWonThisYear)
                     {
@@ -126,13 +96,8 @@ namespace The_Wheel_Query_Tool
                         return;
                     }
 
-
                     dates.Add(formattedDate);
-
-
-                    using var updateCommand =
-                        connection.CreateCommand();
-
+                    using var updateCommand = connection.CreateCommand();
 
                     updateCommand.CommandText =
                     """
@@ -142,25 +107,10 @@ namespace The_Wheel_Query_Tool
                     AND release_year = $year
                     """;
 
-
-                    updateCommand.Parameters.AddWithValue(
-                        "$dates",
-                        JsonSerializer.Serialize(dates)
-                    );
-
-                    updateCommand.Parameters.AddWithValue(
-                        "$movie",
-                        movieName
-                    );
-
-                    updateCommand.Parameters.AddWithValue(
-                        "$year",
-                        releaseYear
-                    );
-
-
+                    updateCommand.Parameters.AddWithValue("$dates", JsonSerializer.Serialize(dates));
+                    updateCommand.Parameters.AddWithValue("$movie", movieName);
+                    updateCommand.Parameters.AddWithValue("$year", releaseYear);
                     updateCommand.ExecuteNonQuery();
-
 
                     MessageBox.Show(
                         "Added additional win date.",
@@ -169,9 +119,7 @@ namespace The_Wheel_Query_Tool
                 }
                 else
                 {
-                    using var insertCommand =
-                        connection.CreateCommand();
-
+                    using var insertCommand = connection.CreateCommand();
 
                     insertCommand.CommandText =
                     """
@@ -191,24 +139,10 @@ namespace The_Wheel_Query_Tool
                     )
                     """;
 
-
-                    insertCommand.Parameters.AddWithValue(
-                        "$movie",
-                        movieName
-                    );
-
-                    insertCommand.Parameters.AddWithValue(
-                        "$year",
-                        releaseYear
-                    );
-
-                    insertCommand.Parameters.AddWithValue(
-                        "$link",
-                        letterboxdLink
-                    );
-
-                    insertCommand.Parameters.AddWithValue(
-                        "$dates",
+                    insertCommand.Parameters.AddWithValue("$movie", movieName);
+                    insertCommand.Parameters.AddWithValue("$year", releaseYear);
+                    insertCommand.Parameters.AddWithValue("$link", letterboxdLink);
+                    insertCommand.Parameters.AddWithValue("$dates",
                         JsonSerializer.Serialize(
                             new List<string>
                             {
@@ -217,9 +151,7 @@ namespace The_Wheel_Query_Tool
                         )
                     );
 
-
                     insertCommand.ExecuteNonQuery();
-
 
                     MessageBox.Show(
                         "Added new movie.",
@@ -255,10 +187,7 @@ namespace The_Wheel_Query_Tool
                 )
             );
 
-            return Path.Combine(
-                root,
-                "The Wheel.db"
-            );
+            return Path.Combine(root, "The Wheel.db");
         }
 
         private void UpdateBannedMoviesFile()
@@ -266,30 +195,20 @@ namespace The_Wheel_Query_Tool
             try
             {
                 string dbPath = GetDatabasePath();
-
-                string directory = Path.GetDirectoryName(dbPath)
-                    ?? AppContext.BaseDirectory;
-
-                string outputPath = Path.Combine(
-                    directory,
-                    "Banned Movies.txt"
-                );
+                string directory = Path.GetDirectoryName(dbPath) ?? AppContext.BaseDirectory;
+                string outputPath = Path.Combine(directory, "Banned Movies.txt");
 
                 int currentYear = DateTime.Now.Year;
-
-                using var connection = new SqliteConnection(
-                    $"Data Source={dbPath}"
-                );
+                using var connection = new SqliteConnection($"Data Source={dbPath}");
 
                 connection.Open();
-
                 using var command = connection.CreateCommand();
 
                 command.CommandText =
                 """
-        SELECT movie_name, release_year, dates_won
-        FROM wheel_submissions
-        """;
+                SELECT movie_name, release_year, dates_won
+                FROM wheel_submissions
+                """;
 
                 using var reader = command.ExecuteReader();
 
@@ -297,29 +216,15 @@ namespace The_Wheel_Query_Tool
 
                 while (reader.Read())
                 {
-                    string movieName =
-                        reader["movie_name"]?.ToString() ?? "";
-
-                    int releaseYear =
-                        Convert.ToInt32(reader["release_year"]);
-
-                    string datesJson =
-                        reader["dates_won"]?.ToString() ?? "[]";
-
-                    List<string> dates =
-                        JsonSerializer.Deserialize<List<string>>(datesJson)
-                        ?? new List<string>();
-
+                    string movieName = reader["movie_name"]?.ToString() ?? "";
+                    int releaseYear = Convert.ToInt32(reader["release_year"]);
+                    string datesJson = reader["dates_won"]?.ToString() ?? "[]";
+                    List<string> dates = JsonSerializer.Deserialize<List<string>>(datesJson) ?? new List<string>();
                     DateTime? currentYearWin = null;
 
                     foreach (string date in dates)
                     {
-                        if (DateTime.TryParseExact(
-                            date,
-                            "yyyy-MM-dd",
-                            CultureInfo.InvariantCulture,
-                            DateTimeStyles.None,
-                            out DateTime winDate))
+                        if (DateTime.TryParseExact(date, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime winDate))
                         {
                             if (winDate.Year == currentYear)
                             {
@@ -331,13 +236,7 @@ namespace The_Wheel_Query_Tool
 
                     if (currentYearWin.HasValue)
                     {
-                        movies.Add(
-                            (
-                                movieName,
-                                releaseYear,
-                                currentYearWin.Value
-                            )
-                        );
+                        movies.Add((movieName, releaseYear, currentYearWin.Value));
                     }
                 }
 
@@ -348,43 +247,30 @@ namespace The_Wheel_Query_Tool
 
                 for (int month = 1; month <= 12; month++)
                 {
-                    List<(string Name, int Year, DateTime WinDate)> monthMovies =
-                        movies
+                    List<(string Name, int Year, DateTime WinDate)> monthMovies = movies
                             .Where(movie => movie.WinDate.Month == month)
                             .OrderBy(movie => movie.Name)
                             .ThenBy(movie => movie.Year)
                             .ToList();
 
-                    // Don't display months with no banned movies.
                     if (monthMovies.Count == 0)
                     {
                         continue;
                     }
 
-                    string monthName =
-                        CultureInfo.CurrentCulture
-                            .DateTimeFormat
-                            .GetAbbreviatedMonthName(month);
+                    string monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(month);
 
-                    output.AppendLine(
-                        $"{month:00} ({monthName})"
-                    );
+                    output.AppendLine($"{month:00} ({monthName})");
 
                     foreach (var movie in monthMovies)
                     {
-                        output.AppendLine(
-                            $" - {movie.Name} ({movie.Year})"
-                        );
+                        output.AppendLine($" - {movie.Name} ({movie.Year})");
                     }
 
                     output.AppendLine();
                 }
 
-                File.WriteAllText(
-                    outputPath,
-                    output.ToString(),
-                    Encoding.UTF8
-                );
+                File.WriteAllText(outputPath, output.ToString(), Encoding.UTF8);
             }
             catch (Exception ex)
             {
