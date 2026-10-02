@@ -1,6 +1,8 @@
 # Wheel
 The wheel is a community event that allows people to have a chance to share films with others.
 
+---
+
 ## Info
 
 ### What Is The Wheel?
@@ -12,6 +14,8 @@ Once per wheel, a participant can stop a film being removed by 'skipping' it, th
 
 ### New Comer Bonus
 If its your first ever wheel, you get 2 skips, you are also exempt from the 15min rule.
+
+---
 
 # Rules
 
@@ -32,6 +36,8 @@ These are usually treated on a case by case basis (e.g. release order or chronol
 
 - TV tie in films are valid, as there is no way to watch the show through the wheel.
     - For example `The Simpsons Movie`, or `El Camino: A Breaking Bad Movie`
+
+---
 
 # Events
 
