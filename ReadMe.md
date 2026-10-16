@@ -33,6 +33,9 @@ These are usually treated on a case by case basis (e.g. release order or chronol
 - TV tie in films are valid, as there is no way to watch the show through the wheel.
     - For example `The Simpsons Movie`, or `El Camino: A Breaking Bad Movie`
 
+## Language Rule
+As the wheel is English-speaking, films must have an English dub available for accessibility.
+
 # Events
 
 ### What Are Events?
@@ -40,6 +43,18 @@ Events are special versions of the wheel that take place for special occasions. 
 
 ## HalloWheel!
 
-- During October only spookie films can be put on the wheel.
+- From October 17th - 31st only spookie films can be put on the wheel.
 - A spookie film is any horror, or just any film that is scary or creepy.
 - `Repeat Rule` still applies.
+
+## 12 Days of Wheelmas!
+
+- From December 13th - 25th, only Christmas films can be put on the wheel.
+- A Christmas film is any film that matches one of the following: 
+    - Takes place on Christmas
+    - Is about Christmas
+    - Has clear wintery and festive themes
+- Films Celebrating other winter holidays are valid (e.g. Hanukkah, Kwanzaa, Winter Solstice, etc.)
+- `Repeat Rule` still applies.
+
+***Feel free to suggest new Events!***
