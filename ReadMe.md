@@ -43,8 +43,8 @@ Events are special versions of the wheel that take place for special occasions. 
 
 ## HalloWheel
 
-- From October 17th - 31st only spookie films can be put on the wheel.
-- A spookie film is any horror, or just any film that is scary or creepy.
+- From October 17th - 31st only spooky films can be put on the wheel.
+- A spooky film is any horror, or just any film that is scary or creepy.
 
 ## 12 Days of Wheelmas
 
@@ -58,13 +58,13 @@ Events are special versions of the wheel that take place for special occasions. 
 ## The Winner Takes It All
 
 - Triggered by the host when they want for variety.
-- Everyones names go in the wheel instead of films, the winner of the wheel gets to pick the film.
+- Everyone's names go in the wheel instead of films, the winner of the wheel gets to pick the film.
 - No Skips
 
 ## TrivWheel
 
 - Triggered by the host when they want for variety.
-- When you want to use your skip you must sucsesfully answer a triva question, falure removes your skip.
-- When someone tries to use thair skip, everyones name is put on a 2nd wheel, whoever is selected must asks the skipper a triva question. 
+- When you want to use your skip you must successfully answer a trivia question, failure removes your skip.
+- When someone tries to use their skip, everyone's name is put on a 2nd wheel, whoever is selected must asks the skipper a trivia question. 
 
 ***Feel free to suggest new Events!***
