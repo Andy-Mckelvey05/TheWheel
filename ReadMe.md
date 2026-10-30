@@ -41,13 +41,12 @@ As the wheel is English-speaking, films must have an English dub available for a
 ### What Are Events?
 Events are special versions of the wheel that take place for special occasions. Events may have their own rules or addons that differ from the normal wheel.
 
-## HalloWheel!
+## HalloWheel
 
 - From October 17th - 31st only spookie films can be put on the wheel.
 - A spookie film is any horror, or just any film that is scary or creepy.
-- `Repeat Rule` still applies.
 
-## 12 Days of Wheelmas!
+## 12 Days of Wheelmas
 
 - From December 13th - 25th, only Christmas films can be put on the wheel.
 - A Christmas film is any film that matches one of the following: 
@@ -55,6 +54,17 @@ Events are special versions of the wheel that take place for special occasions. 
     - Is about Christmas
     - Has clear wintery and festive themes
 - Films Celebrating other winter holidays are valid (e.g. Hanukkah, Kwanzaa, Winter Solstice, etc.)
-- `Repeat Rule` still applies.
+
+## The Winner Takes It All
+
+- Triggered by the host when they want for variety.
+- Everyones names go in the wheel instead of films, the winner of the wheel gets to pick the film.
+- No Skips
+
+## TrivWheel
+
+- Triggered by the host when they want for variety.
+- When you want to use your skip you must sucsesfully answer a triva question, falure removes your skip.
+- When someone tries to use thair skip, everyones name is put on a 2nd wheel, whoever is selected must asks the skipper a triva question. 
 
 ***Feel free to suggest new Events!***
